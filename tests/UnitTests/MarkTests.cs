@@ -12,48 +12,48 @@ public sealed class MarkTests
         Mark m = new Mark();
 
         // Assert
-        Assert.AreEqual(string.Empty, m.name);
-        Assert.AreEqual(0, m.mark);
+        Assert.AreEqual(string.Empty, m.Name_);
+        Assert.AreEqual(0, m.Mark_);
     }
 
     [TestMethod]
     public void TestParameterizedConstructor()
     {
         // Arrange & Act
-        Mark m = new Mark("Математика", 8);
+        Mark m = new Mark("РњР°С‚РµРјР°С‚РёРєР°", 8);
 
         // Assert
-        Assert.AreEqual("Математика", m.name);
-        Assert.AreEqual(8, m.mark);
+        Assert.AreEqual("РњР°С‚РµРјР°С‚РёРєР°", m.Name_);
+        Assert.AreEqual(8, m.Mark_);
     }
 
     [TestMethod]
-    [ExpectedException(typeof(Exception), "Должно быть исключение при оценке < 0")]
+    [ExpectedException(typeof(Exception), "Р”РѕР»Р¶РЅРѕ Р±С‹С‚СЊ РёСЃРєР»СЋС‡РµРЅРёРµ РїСЂРё РѕС†РµРЅРєРµ < 0")]
     public void TestParameterizedConstructor_NegativeMark_ThrowsException()
     {
         // Arrange & Act & Assert
-        Mark m = new Mark("Физика", -5);
+        Mark m = new Mark("Р¤РёР·РёРєР°", -5);
     }
 
     [TestMethod]
-    [ExpectedException(typeof(Exception), "Должно быть исключение при оценке > 10")]
+    [ExpectedException(typeof(Exception), "Р”РѕР»Р¶РЅРѕ Р±С‹С‚СЊ РёСЃРєР»СЋС‡РµРЅРёРµ РїСЂРё РѕС†РµРЅРєРµ > 10")]
     public void TestParameterizedConstructor_MarkGreaterThan10_ThrowsException()
     {
         // Arrange & Act & Assert
-        Mark m = new Mark("Физика", 15);
+        Mark m = new Mark("Р¤РёР·РёРєР°", 15);
     }
 
     [TestMethod]
     public void TestMarkProperty_ValidValues()
     {
         // Arrange
-        Mark m = new Mark("Тест", 5);
+        Mark m = new Mark("РўРµСЃС‚", 5);
 
         // Act
         m.Mark_ = 9;
 
         // Assert
-        Assert.AreEqual(9, m.mark);
+        Assert.AreEqual(9, m.Mark_);
     }
 
     [TestMethod]
@@ -61,7 +61,7 @@ public sealed class MarkTests
     public void TestMarkProperty_NegativeValue_ThrowsException()
     {
         // Arrange
-        Mark m = new Mark("Тест", 5);
+        Mark m = new Mark("РўРµСЃС‚", 5);
 
         // Act & Assert
         m.Mark_ = -1;
@@ -72,7 +72,7 @@ public sealed class MarkTests
     public void TestMarkProperty_ValueGreaterThan10_ThrowsException()
     {
         // Arrange
-        Mark m = new Mark("Тест", 5);
+        Mark m = new Mark("РўРµСЃС‚", 5);
 
         // Act & Assert
         m.Mark_ = 11;
@@ -82,30 +82,30 @@ public sealed class MarkTests
     public void TestToFivePointScale_InstanceMethod()
     {
         // Arrange
-        Mark m1 = new Mark("Тест1", 3);
-        Mark m2 = new Mark("Тест2", 5);
-        Mark m3 = new Mark("Тест3", 7);
-        Mark m4 = new Mark("Тест4", 9);
-        Mark m5 = new Mark("Тест5", 10);
+        Mark m1 = new Mark("РўРµСЃС‚1", 3);
+        Mark m2 = new Mark("РўРµСЃС‚2", 5);
+        Mark m3 = new Mark("РўРµСЃС‚3", 7);
+        Mark m4 = new Mark("РўРµСЃС‚4", 9);
+        Mark m5 = new Mark("РўРµСЃС‚5", 10);
 
         // Act & Assert
-        Assert.AreEqual("неудовлетворительно", m1.ToFivePointScale());
-        Assert.AreEqual("удовлетворительно", m2.ToFivePointScale());
-        Assert.AreEqual("хорошо", m3.ToFivePointScale());
-        Assert.AreEqual("отлично", m4.ToFivePointScale());
-        Assert.AreEqual("отлично", m5.ToFivePointScale());
+        Assert.AreEqual("РЅРµСѓРґРѕРІР»РµС‚РІРѕСЂРёС‚РµР»СЊРЅРѕ", m1.ToFivePointScale());
+        Assert.AreEqual("СѓРґРѕРІР»РµС‚РІРѕСЂРёС‚РµР»СЊРЅРѕ", m2.ToFivePointScale());
+        Assert.AreEqual("С…РѕСЂРѕС€Рѕ", m3.ToFivePointScale());
+        Assert.AreEqual("РѕС‚Р»РёС‡РЅРѕ", m4.ToFivePointScale());
+        Assert.AreEqual("РѕС‚Р»РёС‡РЅРѕ", m5.ToFivePointScale());
     }
 
     [TestMethod]
     public void TestToFivePointScale_StaticMethod()
     {
         // Arrange
-        Mark m1 = new Mark("Тест1", 2);
-        Mark m2 = new Mark("Тест2", 6);
+        Mark m1 = new Mark("РўРµСЃС‚1", 2);
+        Mark m2 = new Mark("РўРµСЃС‚2", 6);
 
         // Act & Assert
-        Assert.AreEqual("неудовлетворительно", Mark.ToFivePointScale(m1));
-        Assert.AreEqual("хорошо", Mark.ToFivePointScale(m2));
+        Assert.AreEqual("РЅРµСѓРґРѕРІР»РµС‚РІРѕСЂРёС‚РµР»СЊРЅРѕ", Mark.ToFivePointScale(m1));
+        Assert.AreEqual("С…РѕСЂРѕС€Рѕ", Mark.ToFivePointScale(m2));
     }
 
     [TestMethod]
@@ -116,20 +116,21 @@ public sealed class MarkTests
 
         // Act
         Mark m1 = new Mark();
-        Mark m2 = new Mark("Тест", 5);
-        
+        Mark m2 = new Mark("РўРµСЃС‚", 5);
+
         // Assert
         Assert.AreEqual(initialCount + 2, Mark.CollectionCount);
+        Assert.AreEqual(initialCount + 2, Mark.CountObjects());
     }
 
     [TestMethod]
     public void TestEquals()
     {
         // Arrange
-        Mark m1 = new Mark("Предмет", 7);
-        Mark m2 = new Mark("Предмет", 7);
-        Mark m3 = new Mark("Другой", 7);
-        Mark m4 = new Mark("Предмет", 4);
+        Mark m1 = new Mark("РџСЂРµРґРјРµС‚", 7);
+        Mark m2 = new Mark("РџСЂРµРґРјРµС‚", 7);
+        Mark m3 = new Mark("Р”СЂСѓРіРѕР№", 7);
+        Mark m4 = new Mark("РџСЂРµРґРјРµС‚", 4);
 
         // Act & Assert
         Assert.IsTrue(m1.Equals(m2));
@@ -141,52 +142,52 @@ public sealed class MarkTests
     public void TestShow()
     {
         // Arrange
-        Mark m = new Mark("Информатика", 8);
+        Mark m = new Mark("РРЅС„РѕСЂРјР°С‚РёРєР°", 8);
 
         // Act & Assert
-        Assert.AreEqual("Информатика, 8", m.Show());
+        Assert.AreEqual("РРЅС„РѕСЂРјР°С‚РёРєР°, 8", m.Show());
     }
 
     [TestMethod]
     public void TestNotOperator()
     {
         // Arrange
-        Mark m = new Mark("математика", 6);
+        Mark m = new Mark("РјР°С‚РµРјР°С‚РёРєР°", 6);
 
         // Act
         Mark result = !m;
 
         // Assert
-        Assert.AreEqual("МАТЕМАТИКА", result.name);
-        Assert.AreEqual(6, result.mark);
+        Assert.AreEqual("РњРђРўР•РњРђРўРРљРђ", result.Name_);
+        Assert.AreEqual(6, result.Mark_);
     }
 
     [TestMethod]
     public void TestUnaryMinusOperator()
     {
         // Arrange
-        Mark m = new Mark("Физика", 8);
+        Mark m = new Mark("Р¤РёР·РёРєР°", 8);
 
         // Act
         Mark result = -m;
 
         // Assert
-        Assert.AreEqual("Физика", result.name);
-        Assert.AreEqual(0, result.mark);
+        Assert.AreEqual("Р¤РёР·РёРєР°", result.Name_);
+        Assert.AreEqual(0, result.Mark_);
     }
 
     [TestMethod]
     public void TestDivisionOperator()
     {
         // Arrange
-        Mark m = new Mark("СтароеИмя", 5);
+        Mark m = new Mark("РЎС‚Р°СЂРѕРµРРјСЏ", 5);
 
         // Act
-        Mark result = m / "НовоеИмя";
+        Mark result = m / "РќРѕРІРѕРµРРјСЏ";
 
         // Assert
-        Assert.AreEqual("НовоеИмя", result.name);
-        Assert.AreEqual(5, result.mark);
+        Assert.AreEqual("РќРѕРІРѕРµРРјСЏ", result.Name_);
+        Assert.AreEqual(5, result.Mark_);
     }
 
     [TestMethod]
@@ -203,19 +204,19 @@ public sealed class MarkTests
         int count3 = (int)m3;
 
         // Assert
-        Assert.AreEqual(12, count1); // "CProgramming" = 12 букв
-        Assert.AreEqual(4, count2); // "Test" = 4 буквы
-        Assert.AreEqual(0, count3); // Пустая строка
+        Assert.AreEqual(12, count1); 
+        Assert.AreEqual(4, count2); 
+        Assert.AreEqual(0, count3); 
     }
 
     [TestMethod]
     public void TestImplicitBoolConversion()
     {
         // Arrange
-        Mark passing1 = new Mark("Тест1", 4); // Граничное значение
-        Mark passing2 = new Mark("Тест2", 7);
-        Mark failing1 = new Mark("Тест3", 3);
-        Mark failing2 = new Mark("Тест4", 0);
+        Mark passing1 = new Mark("РўРµСЃС‚1", 4);
+        Mark passing2 = new Mark("РўРµСЃС‚2", 7);
+        Mark failing1 = new Mark("РўРµСЃС‚3", 3);
+        Mark failing2 = new Mark("РўРµСЃС‚4", 0);
 
         // Act & Assert
         Assert.IsTrue(passing1);
@@ -228,32 +229,32 @@ public sealed class MarkTests
     public void TestGreaterOrEqualOperator()
     {
         // Arrange
-        Mark m1 = new Mark("Предмет1", 7);
-        Mark m2 = new Mark("Предмет2", 7);
-        Mark m3 = new Mark("Предмет3", 4);
-        Mark m4 = new Mark("Предмет4", 9);
+        Mark m1 = new Mark("РџСЂРµРґРјРµС‚1", 7);
+        Mark m2 = new Mark("РџСЂРµРґРјРµС‚2", 7);
+        Mark m3 = new Mark("РџСЂРµРґРјРµС‚3", 4);
+        Mark m4 = new Mark("РџСЂРµРґРјРµС‚4", 9);
 
         // Act & Assert
         Assert.IsTrue(m1 >= m2);
         Assert.IsTrue(m1 >= m3);
         Assert.IsFalse(m3 >= m1);
-        Assert.IsTrue(m1 >= m1); // Рефлексивность
+        Assert.IsTrue(m1 >= m1); 
     }
 
     [TestMethod]
     public void TestLessOrEqualOperator()
     {
         // Arrange
-        Mark m1 = new Mark("Предмет1", 7);
-        Mark m2 = new Mark("Предмет2", 7);
-        Mark m3 = new Mark("Предмет3", 4);
-        Mark m4 = new Mark("Предмет4", 9);
+        Mark m1 = new Mark("РџСЂРµРґРјРµС‚1", 7);
+        Mark m2 = new Mark("РџСЂРµРґРјРµС‚2", 7);
+        Mark m3 = new Mark("РџСЂРµРґРјРµС‚3", 4);
+        Mark m4 = new Mark("РџСЂРµРґРјРµС‚4", 9);
 
         // Act & Assert
         Assert.IsTrue(m1 <= m2);
         Assert.IsTrue(m3 <= m1);
         Assert.IsFalse(m4 <= m1);
-        Assert.IsTrue(m1 <= m1); // Рефлексивность
+        Assert.IsTrue(m1 <= m1); 
     }
 
     [TestMethod]
@@ -261,23 +262,23 @@ public sealed class MarkTests
     {
         // Arrange
         string[] expected = {
-            "неудовлетворительно",
-            "неудовлетворительно",
-            "неудовлетворительно",
-            "неудовлетворительно",
-            "удовлетворительно",
-            "удовлетворительно",
-            "хорошо",
-            "хорошо",
-            "отлично",
-            "отлично",
-            "отлично"
+            "РЅРµСѓРґРѕРІР»РµС‚РІРѕСЂРёС‚РµР»СЊРЅРѕ",
+            "РЅРµСѓРґРѕРІР»РµС‚РІРѕСЂРёС‚РµР»СЊРЅРѕ",
+            "РЅРµСѓРґРѕРІР»РµС‚РІРѕСЂРёС‚РµР»СЊРЅРѕ",
+            "РЅРµСѓРґРѕРІР»РµС‚РІРѕСЂРёС‚РµР»СЊРЅРѕ",
+            "СѓРґРѕРІР»РµС‚РІРѕСЂРёС‚РµР»СЊРЅРѕ",
+            "СѓРґРѕРІР»РµС‚РІРѕСЂРёС‚РµР»СЊРЅРѕ",
+            "С…РѕСЂРѕС€Рѕ",
+            "С…РѕСЂРѕС€Рѕ",
+            "РѕС‚Р»РёС‡РЅРѕ",
+            "РѕС‚Р»РёС‡РЅРѕ",
+            "РѕС‚Р»РёС‡РЅРѕ"
         };
 
         // Act & Assert
         for (int i = 0; i <= 10; i++)
         {
-            Mark m = new Mark($"Тест{i}", i);
+            Mark m = new Mark($"РўРµСЃС‚{i}", i);
             Assert.AreEqual(expected[i], m.ToFivePointScale());
         }
     }
