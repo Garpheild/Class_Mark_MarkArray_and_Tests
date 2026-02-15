@@ -40,9 +40,9 @@ public sealed class MarkArrayTests
     {
         // Arrange
         MarkArray original = new MarkArray(3);
-        original[0] = new Mark("Математика", 8);
-        original[1] = new Mark("Физика", 5);
-        original[2] = new Mark("Химия", 3);
+        original[0] = new Mark("РњР°С‚РµРјР°С‚РёРєР°", 8);
+        original[1] = new Mark("Р¤РёР·РёРєР°", 5);
+        original[2] = new Mark("РҐРёРјРёСЏ", 3);
 
         // Act
         MarkArray copy = new MarkArray(original);
@@ -50,10 +50,10 @@ public sealed class MarkArrayTests
         // Assert
         Assert.AreEqual(original.Length, copy.Length);
 
-        // Проверка глубокого копирования
-        original[0] = new Mark("Измененный", 10);
-        Assert.AreNotEqual(original[0]?.name, copy[0]?.name);
-        Assert.AreEqual("Математика", copy[0]?.name);
+        // РџСЂРѕРІРµСЂРєР° РіР»СѓР±РѕРєРѕРіРѕ РєРѕРїРёСЂРѕРІР°РЅРёСЏ
+        original[0] = new Mark("РР·РјРµРЅРµРЅРЅС‹Р№", 10);
+        Assert.AreNotEqual(original[0]?.Name_, copy[0]?.Name_);
+        Assert.AreEqual("РњР°С‚РµРјР°С‚РёРєР°", copy[0]?.Name_);
     }
 
     [TestMethod]
@@ -61,15 +61,15 @@ public sealed class MarkArrayTests
     {
         // Arrange
         MarkArray array = new MarkArray(3);
-        Mark m = new Mark("Тест", 7);
+        Mark m = new Mark("РўРµСЃС‚", 7);
 
         // Act
         array[1] = m;
 
         // Assert
         Assert.AreEqual(m, array[1]);
-        Assert.AreEqual("Тест", array[1]?.name);
-        Assert.AreEqual(7, array[1]?.mark);
+        Assert.AreEqual("РўРµСЃС‚", array[1]?.Name_);
+        Assert.AreEqual(7, array[1]?.Mark_);
     }
 
     [TestMethod]
@@ -91,7 +91,7 @@ public sealed class MarkArrayTests
         MarkArray array = new MarkArray(3);
 
         // Act & Assert
-        array[5] = new Mark("Тест", 5);
+        array[5] = new Mark("РўРµСЃС‚", 5);
     }
 
     [TestMethod]
@@ -106,7 +106,7 @@ public sealed class MarkArrayTests
         array.Display();
 
         // Assert
-        StringAssert.Contains(consoleOutput.ToString(), "Коллекция пуста");
+        StringAssert.Contains(consoleOutput.ToString(), "РљРѕР»Р»РµРєС†РёСЏ РїСѓСЃС‚Р°");
     }
 
     [TestMethod]
@@ -114,8 +114,8 @@ public sealed class MarkArrayTests
     {
         // Arrange
         MarkArray array = new MarkArray(2);
-        array[0] = new Mark("Предмет1", 8);
-        array[1] = new Mark("Предмет2", 4);
+        array[0] = new Mark("РџСЂРµРґРјРµС‚1", 8);
+        array[1] = new Mark("РџСЂРµРґРјРµС‚2", 4);
         var consoleOutput = new System.IO.StringWriter();
         Console.SetOut(consoleOutput);
 
@@ -124,9 +124,9 @@ public sealed class MarkArrayTests
 
         // Assert
         string output = consoleOutput.ToString();
-        StringAssert.Contains(output, "Элементы коллекции:");
-        StringAssert.Contains(output, "Предмет1, 8");
-        StringAssert.Contains(output, "Предмет2, 4");
+        StringAssert.Contains(output, "Р­Р»РµРјРµРЅС‚С‹ РєРѕР»Р»РµРєС†РёРё:");
+        StringAssert.Contains(output, "РџСЂРµРґРјРµС‚1, 8");
+        StringAssert.Contains(output, "РџСЂРµРґРјРµС‚2, 4");
     }
 }
 
